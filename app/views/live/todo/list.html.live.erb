@@ -1,0 +1,44 @@
+<div class="card bg-base-100 shadow-xl max-w-md mx-auto w-2xl">
+  <div class="card-body">
+    <div class="flex justify-between items-center">
+      <h2 class="card-title">Todo List</h2>
+
+      <span class="badge badge-primary badge-lg <%= 'hidden' if component.total_count.zero? %>">
+        <%= component.remaining_count %> remaining
+      </span>
+    </div>
+
+    <div class="w-full <%= 'hidden' if component.total_count.zero? %>">
+      <div class="w-full">
+        <div class="flex justify-between text-xs mb-1">
+          <span><%= component.completed_count %> of <%= component.total_count %> completed</span>
+          <span><%= component.completion_percentage %>%</span>
+        </div>
+        <progress class="progress progress-primary w-full" value="<%= component.completion_percentage %>" max="100"></progress>
+      </div>
+
+      <div class="tabs tabs-boxed w-full mt-4">
+        <a class="tab <%= filter == :all ? 'tab-active' : '' %>" live-action="filter_all">
+          All
+        </a>
+        <a class="tab <%= filter == :active ? 'tab-active' : '' %>" live-action="filter_active">
+          Active
+        </a>
+        <a class="tab <%= filter == :completed ? 'tab-active' : '' %>" live-action="filter_completed">
+          Completed
+        </a>
+      </div>
+    </div>
+
+    <ul class="menu bg-base-200 w-full rounded-box">
+      <% component.filtered_todos.each do |todo| %>
+        <li class="mb-1" live-key="<%= todo[:id] %>">
+          <%= live("todo/item", id: todo[:id], todo:) %>
+        </li>
+      <% end %>
+    </ul>
+    <button class="btn" live-action="randomize">
+      Randomize
+    </button>
+  </div>
+</div>

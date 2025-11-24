@@ -1,0 +1,16 @@
+<div>
+  <% if confirmation %>
+    <dialog open class="modal">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg">
+          <%= confirmation&.dig(:title) %>
+        </h3>
+
+        <div class="modal-action">
+          <button class="btn primary" live-action="confirm">Confirm</button>
+          <button class="btn" live-action="cancel">Close</button>
+        </div>
+      </div>
+    </dialog>
+  <% end %>
+</div>

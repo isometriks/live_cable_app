@@ -1,0 +1,18 @@
+en:
+  devise:
+    sessions:
+      signed_in: "Signed in successfully."
+      signed_out: "Signed out successfully."
+    registrations:
+      signed_up: "Welcome! You have signed up successfully."
+      updated: "Your account has been updated successfully."
+      destroyed: "Your account has been successfully cancelled."
+    passwords:
+      send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
+      updated: "Your password has been changed successfully. You are now signed in."
+    failure:
+      invalid: "Invalid %{authentication_keys} or password."
+      not_found_in_database: "Invalid %{authentication_keys} or password."
+      already_authenticated: "You are already signed in."
+    confirmations:
+      send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
