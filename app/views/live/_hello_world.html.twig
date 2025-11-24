@@ -1,0 +1,58 @@
+<div class="card shadow-xl mb-4">
+  <div class="card-body">
+    <h2 class="card-title flex items-center gap-2">
+      Hello World
+      <span class="badge badge-secondary lowercase">{{ counter is even ? 'even' : 'odd' }}</span>
+    </h2>
+
+    <div class="space-y-1">
+      <p>You've clicked this <span class="font-semibold">{{ counter }}</span> {{ "time"|plural(counter) }}</p>
+      <p>You've clicked all of these <span class="font-semibold">{{ total }}</span> {{ "time"|plural(total) }}</p>
+    </div>
+
+    <div class="card-actions mt-4">
+      <button class="btn btn-primary" data-action="click->live#call" data-live-action-param="increment">
+        Click Me
+      </button>
+    </div>
+
+    <div class="mt-6">
+      {% if not name %}
+        <h3 class="text-lg font-semibold">Pick your name</h3>
+      {% else %}
+        <h3 class="text-lg font-semibold">You've chosen {{ name }}</h3>
+      {% endif %}
+    </div>
+
+    <div class="form-control w-full max-w-xs">
+      <label class="label">
+        <span class="label-text">Gender</span>
+      </label>
+      <select name="gender" class="select select-bordered" data-action="change->live#reactive">
+        {{ options_for_select({ "Select Your Gender": "", "Male": "male", "Female": "female" }, selected: gender) }}
+      </select>
+    </div>
+
+    {% if gender == "male" %}
+      <div class="form-control w-full max-w-xs mt-4">
+        <label class="label">
+          <span class="label-text">Male Names</span>
+        </label>
+        <select name="name" class="select select-bordered" data-action="change->live#reactive">
+          {{ options_for_select(["Choose a Name", "Craig", "Jim"], selected: name) }}
+        </select>
+      </div>
+    {% endif %}
+
+    {% if gender == "female" %}
+      <div class="form-control w-full max-w-xs mt-4">
+        <label class="label">
+          <span class="label-text">Female Names</span>
+        </label>
+        <select name="name" class="select select-bordered" data-action="change->live#reactive">
+          {{ options_for_select(["Choose a Name", "Beth", "Tiffany"], selected: name) }}
+        </select>
+      </div>
+    {% endif %}
+  </div>
+</div>
