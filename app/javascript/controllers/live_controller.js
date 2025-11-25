@@ -4,9 +4,7 @@ import morphdom from "morphdom"
 
 export default class extends Controller {
   static values = {
-    id: String,
     defaults: Object,
-    sessionId: String,
     status: String,
     component: String,
   }
@@ -18,18 +16,11 @@ export default class extends Controller {
       channel: "LiveChannel",
       component: this.componentValue,
       defaults: this.defaultsValue,
-      _live_id: this.idValue,
-      session_id: this.sessionIdValue,
     }, {
       received: (data) => {
-        if (data['_id'] !== this.idValue) {
-          return
-        }
-
         if (data['_status']) {
           this.statusValue = data['_status']
         } else if (data['_refresh']) {
-          console.log("Refreshing", data['_id'])
           morphdom(this.element, '<div>' + data['_refresh'] + '</div>', {
             childrenOnly: true,
           })
@@ -41,8 +32,8 @@ export default class extends Controller {
   call({ params }) {
     this.#subscription.send({
       _action: params["action"],
-      _live_id: this.idValue,
       params: new URLSearchParams(params).toString(),
+      _csrf_token: this.#csrfToken,
     })
   }
 
@@ -51,7 +42,7 @@ export default class extends Controller {
       action: 'reactive',
       name: target.name,
       value: target.value,
-      _live_id: this.idValue,
+      _csrf_token: this.#csrfToken,
     })
   }
 
@@ -60,8 +51,12 @@ export default class extends Controller {
 
     this.#subscription.send({
       _action: action,
-      _live_id: this.idValue,
       params: new URLSearchParams(formData).toString(),
+      _csrf_token: this.#csrfToken,
     })
+  }
+
+  get #csrfToken() {
+    return document.querySelector("meta[name='csrf-token']")?.getAttribute("content")
   }
 }

@@ -3,8 +3,7 @@ module ApplicationCable
     identified_by :live_connection
 
     def connect
-      self.live_connection = LiveCable::Connection.new
-      puts "\n=== SETTING LIVE CONNECTION: #{live_connection.object_id}\n"
+      self.live_connection = LiveCable::Connection.new(request)
     end
   end
 end

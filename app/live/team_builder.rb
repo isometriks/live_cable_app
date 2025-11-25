@@ -1,6 +1,10 @@
 class TeamBuilder < LiveCable::Component
-  reactive :contact, -> { Contact.new }, shared: true
-  reactive :contacts, -> { [] }
+  reactive :contact_id, -> { raise NotImplementedError }
+  reactive :contact, ->(component) { Contact.find(component.contact_id) }
+  reactive :contacts, -> { {} }
+  reactive :team
+
+  actions :form, :save
 
   def form(params)
     contact.assign_attributes(params.expect(contact: [:name, :gender]))
@@ -11,7 +15,9 @@ class TeamBuilder < LiveCable::Component
 
   def save(params)
     if contact.save
-      contacts << contact
+      contacts[team] ||= []
+      contacts[team] << contact
+
       self.contact = Contact.new
     end
 
