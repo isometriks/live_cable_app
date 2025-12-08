@@ -1,0 +1,20 @@
+{% yield live_component(component, class: "card bg-base-100 shadow-xl max-w-md mx-auto mb-4 w-2xl") do %}
+  <div class="card-body">
+    <form data-live-action-param="add" data-action="submit->live#form:prevent">
+      <h2 class="card-title">New Todo</h2>
+      <div class="flex gap-2">
+        <input type="text"
+               name="text"
+               value="{{ text }}"
+               placeholder="Enter todo..."
+               class="input input-bordered flex-grow"
+               data-action="input->live#reactiveDebounce"
+        />
+
+        <button class="btn btn-primary">
+          Add
+        </button>
+      </div>
+    </form>
+  </div>
+{% endyield %}

@@ -1,0 +1,16 @@
+<%= live_component(component, class: "card bg-base-100 shadow-xl max-w-md mx-auto w-2xl") do %>
+  <div class="card-body">
+    <h2 class="card-title">Todo List</h2>
+
+    <ul class="menu bg-base-200 w-full rounded-box">
+      <% todos.each do |todo| %>
+        <li class="mb-1" live-key="<%= todo[:id] %>">
+          <%= live("todo_item", id: todo[:id], todo:) %>
+        </li>
+      <% end %>
+    </ul>
+    <button class="btn" data-action="live#call" data-live-action-param="randomize">
+      Randomize
+    </button>
+  </div>
+<% end %>
