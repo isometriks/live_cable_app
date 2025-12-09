@@ -67,3 +67,6 @@ end
 gem "nokogiri", "~> 1.18"
 
 gem "twig_ruby", "~> 0.0.7"
+
+# Authentication framework
+gem "devise", "~> 4.9"

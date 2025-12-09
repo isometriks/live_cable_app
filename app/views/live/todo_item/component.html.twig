@@ -9,6 +9,11 @@
                 {{ todo.text }} {{ todo.object_id }}
               </span>
   </label>
+  <button class="btn btn-square btn-xs btn-primary"
+          data-action="click->live#call"
+          data-live-action-param="edit">
+    Edit
+  </button>
   <button class="btn btn-square btn-xs btn-error"
           data-action="click->live#call"
           data-live-action-param="remove">
