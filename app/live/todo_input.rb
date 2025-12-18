@@ -9,7 +9,8 @@ module Live
       return if params[:text].blank?
 
       id = SecureRandom.uuid
-      self.todos = todos + [{ id: id, text: params[:text], completed: false }]
+      todos << { id: id, text: params[:text], completed: false, priority: :low }
+
       self.text = ""
     end
   end

@@ -1,0 +1,23 @@
+{% yield live_component(component, class: "card bg-base-100 shadow-xl w-full") do %}
+  <div class="card-body p-4">
+    <form data-live-action-param="send_message" data-action="submit->live#form:prevent">
+      <div class="flex gap-2">
+        <input type="text"
+               name="message"
+               value="{{ message }}"
+               placeholder="Type your message..."
+               class="input input-bordered flex-grow"
+               data-action="keydown->live#reactiveDebounce"
+               autocomplete="off"
+        />
+
+        <button class="btn btn-primary" type="submit">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+          </svg>
+          Send
+        </button>
+      </div>
+    </form>
+  </div>
+{% endyield %}

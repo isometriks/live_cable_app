@@ -1,4 +1,4 @@
-{% yield live_component(component, class: "flex justify-between items-center p-2") do %}
+{% yield live_component(component, data: { controller: "todo-item" }, class: "flex justify-between items-center p-2") do %}
   <label class="label cursor-pointer gap-2 flex-grow justify-start">
     <input type="checkbox"
            class="checkbox checkbox-primary"
@@ -9,14 +9,15 @@
         type="text"
         name="text"
         value="{{ todo.text }}"
-        class="input"
-        data-action="change->live#reactive">
+        data-todo-item-target="text"
+        data-action="keydown.enter->todo-item#save"
+        class="input">
   </label>
   <button class="btn btn-square btn-xs btn-primary"
-          data-action="click->live#call"
-          data-live-action-param="save">
+          data-action="click->todo-item#save">
     Done
   </button>
+
   <button class="btn btn-square btn-xs btn-error"
           data-action="click->live#call"
           data-live-action-param="remove">

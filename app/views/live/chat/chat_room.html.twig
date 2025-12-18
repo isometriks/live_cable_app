@@ -1,0 +1,29 @@
+{% yield live_component(component, class: "card bg-base-100 shadow-xl max-w-2xl mx-auto") do %}
+  <div class="card-body">
+    <h2 class="card-title mb-4">Chat Room</h2>
+
+    <div class="bg-base-200 rounded-lg p-4 h-96 overflow-y-auto mb-4" id="messages-container">
+      {% if messages|length > 0 %}
+        {% for msg in messages %}
+          <div class="chat {{ current_user.id == msg.user[:id] ? "chat-start" : "chat-end" }} mb-2">
+            <div class="chat-bubble {{ current_user.id == msg.user[:id] ? "bg-primary" : "bg-secondary" }} text-primary-content">
+              <div class="font-semibold text-sm">{{ msg.user[:first_name] }}</div>
+              <div class="mt-1">{{ msg.text }}</div>
+              <div class="text-xs opacity-70 mt-1">
+                {{ msg.timestamp ? msg.timestamp|date('%-l:%M %p') : '' }}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="flex items-center justify-center h-full">
+          <p class="text-base-content opacity-50">No messages yet. Start the conversation!</p>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="divider my-0"></div>
+
+    {{ live("chat/chat_input", id: "chat_input") }}
+  </div>
+{% endyield %}

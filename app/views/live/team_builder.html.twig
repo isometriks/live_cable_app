@@ -1,4 +1,4 @@
-<div class="card shadow-xl max-w-64 m-4 bg-white m-x-auto">
+{% yield live_component(component, class: "card shadow-xl max-w-64 m-4 bg-white m-x-auto") do %}
   <div class="card-body">
     <div class="mt-2">
       {% if not contact.name %}
@@ -51,6 +51,9 @@
     </form>
 
     <h3 class="text-xl mt-4">Current Team</h3>
+    {{ dump(contacts) }}
+    {{ dump(team) }}
+    {{ dump(contacts[team] ?? "nothing") }}
 
     <ul>
       {% for contact in contacts[team] ?? [] %}
@@ -60,4 +63,4 @@
       {% endfor %}
     </ul>
   </div>
-</div>
+{% endyield %}

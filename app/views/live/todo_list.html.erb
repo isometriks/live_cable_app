@@ -1,9 +1,42 @@
 <%= live_component(component, class: "card bg-base-100 shadow-xl max-w-md mx-auto w-2xl") do %>
   <div class="card-body">
-    <h2 class="card-title">Todo List</h2>
+    <div class="flex justify-between items-center">
+      <h2 class="card-title">Todo List</h2>
+      <% if component.total_count > 0 %>
+        <span class="badge badge-primary badge-lg"><%= component.remaining_count %> remaining</span>
+      <% end %>
+    </div>
+
+    <% if component.total_count > 0 %>
+      <div class="w-full">
+        <div class="flex justify-between text-xs mb-1">
+          <span><%= component.completed_count %> of <%= component.total_count %> completed</span>
+          <span><%= component.completion_percentage %>%</span>
+        </div>
+        <progress class="progress progress-primary w-full" value="<%= component.completion_percentage %>" max="100"></progress>
+      </div>
+
+      <div class="tabs tabs-boxed w-full mt-4">
+        <a class="tab <%= filter == :all ? 'tab-active' : '' %>" 
+           data-action="click->live#call" 
+           data-live-action-param="filter_all">
+          All
+        </a>
+        <a class="tab <%= filter == :active ? 'tab-active' : '' %>" 
+           data-action="click->live#call" 
+           data-live-action-param="filter_active">
+          Active
+        </a>
+        <a class="tab <%= filter == :completed ? 'tab-active' : '' %>" 
+           data-action="click->live#call" 
+           data-live-action-param="filter_completed">
+          Completed
+        </a>
+      </div>
+    <% end %>
 
     <ul class="menu bg-base-200 w-full rounded-box">
-      <% todos.each do |todo| %>
+      <% component.filtered_todos.each do |todo| %>
         <li class="mb-1" live-key="<%= todo[:id] %>">
           <%= live("todo_item", id: todo[:id], todo:) %>
         </li>

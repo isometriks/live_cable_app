@@ -70,3 +70,7 @@ gem "twig_ruby", "~> 0.0.7"
 
 # Authentication framework
 gem "devise", "~> 4.9"
+
+gem "method_source", "~> 1.1"
+
+gem "redis", "~> 5.4"
