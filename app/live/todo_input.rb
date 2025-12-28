@@ -8,8 +8,12 @@ module Live
     def add(params)
       return if params[:text].blank?
 
-      id = SecureRandom.uuid
-      todos << { id: id, text: params[:text], completed: false, priority: :low }
+      todos << {
+        id: SecureRandom.uuid,
+        text: params[:text],
+        completed: false,
+        priority: :low,
+      }
 
       self.text = ""
     end

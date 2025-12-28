@@ -50,6 +50,7 @@
         <CLASSES>
           <root url="file://$MODULE_DIR$/../live_cable/app" />
           <root url="file://$MODULE_DIR$/../live_cable/lib" />
+          <root url="file://$MODULE_DIR$/../live_cable/tmp" />
           <root url="file://$MODULE_DIR$/../live_cable/.git" />
           <root url="file://$MODULE_DIR$/../live_cable/spec" />
           <root url="file://$MODULE_DIR$/../live_cable/.idea" />
@@ -60,6 +61,7 @@
         <SOURCES>
           <root url="file://$MODULE_DIR$/../live_cable/app" />
           <root url="file://$MODULE_DIR$/../live_cable/lib" />
+          <root url="file://$MODULE_DIR$/../live_cable/tmp" />
           <root url="file://$MODULE_DIR$/../live_cable/.git" />
           <root url="file://$MODULE_DIR$/../live_cable/spec" />
           <root url="file://$MODULE_DIR$/../live_cable/.idea" />
@@ -67,6 +69,7 @@
           <root url="file://$MODULE_DIR$/../live_cable/.github" />
         </SOURCES>
         <excluded>
+          <root url="file://$MODULE_DIR$/../live_cable/tmp" />
           <root url="file://$MODULE_DIR$/../live_cable/.git" />
           <root url="file://$MODULE_DIR$/../live_cable/spec" />
           <root url="file://$MODULE_DIR$/../live_cable/.idea" />
@@ -164,7 +167,6 @@
     <orderEntry type="library" scope="PROVIDED" name="rake (v13.3.1, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v6.17.0, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="redis (v5.4.1, Remote: ruby-3.4.6-p54) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="redis-client (v0.26.2, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v2.11.3, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="reline (v0.6.3, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="responders (v3.2.0, Remote: ruby-3.4.6-p54) [gem]" level="application" />
@@ -302,7 +304,7 @@
     </entry>
     <entry key="test/mailers/previews">
       <value>file://$MODULE_DIR$/test/mailers/previews</value>
-      <value>file:///home/craiga/live_cable_app/test/mailers/previews</value>
+      <value>file:///home/craiga/live-cable-app/test/mailers/previews</value>
     </entry>
     <entry key="tmp">
       <value>file://$MODULE_DIR$/tmp</value>
