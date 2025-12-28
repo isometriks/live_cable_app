@@ -1,0 +1,14 @@
+{% yield live_component(component) do %}
+  {% if confirmation %}
+    <dialog open class="modal">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg">{{ confirmation[:title] }}</h3>
+
+        <div class="modal-action">
+          <button class="btn primary" data-action="live#call" data-live-action-param="confirm">Confirm</button>
+          <button class="btn" data-action="live#call" data-live-action-param="cancel">Close</button>
+        </div>
+      </div>
+    </dialog>
+  {% endif %}
+{% endyield %}
