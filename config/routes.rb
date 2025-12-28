@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   # root "posts#index"
   get "todo" => "test#todo"
   get "chat" => "test#chat"
+  get "dialog" => "test#dialog"
   root "test#index"
 end
