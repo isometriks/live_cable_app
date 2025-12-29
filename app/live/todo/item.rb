@@ -38,7 +38,7 @@ module Live
         self.state = :component
       end
 
-      def template_state
+      def variant
         state
       end
     end

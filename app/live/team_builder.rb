@@ -4,18 +4,24 @@ module Live
     reactive :contact, -> { Contact.new }
     reactive :contacts, -> { {} }
     reactive :team
+    reactive :names_by_role, -> {
+      %w[engineer designer].index_with { 5.times.map { Faker::Name.first_name }.uniq }
+    }
+
+    def names_for_role
+      names_by_role[contact.role] || []
+    end
 
     actions :form, :save
 
     def form(params)
-      contact.gender = params.dig(:contact, :gender)
+      contact.role = params.dig(:contact, :role)
       contact.name = params.dig(:contact, :name)
       contact.validate
     end
 
     def save(params)
       if contact.save
-        puts "Team is #{team.inspect} #{team.class.name}"
         contacts[team] ||= []
         contacts[team] << contact
 

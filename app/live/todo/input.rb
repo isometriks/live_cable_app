@@ -3,7 +3,7 @@ module Live
     class Input < LiveCable::Component
       shared :todos, -> { [] }
 
-      reactive :text
+      reactive :text, writable: true
       actions :add
 
       def add(params)

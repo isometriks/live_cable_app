@@ -24,7 +24,7 @@ module Live
         # noop
       end
 
-      def template_state
+      def variant
         submitted ? :submitted : super
       end
     end

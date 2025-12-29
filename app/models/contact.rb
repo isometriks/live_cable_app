@@ -1,4 +1,4 @@
 class Contact < ApplicationRecord
   validates :name, presence: true
-  validates :gender, inclusion: { in: %w[male female] }
+  validates :role, inclusion: { in: %w[engineer designer] }
 end

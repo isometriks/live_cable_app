@@ -1,7 +1,7 @@
 module Live
   module Chat
     class ChatInput < LiveCable::Component
-      reactive :message
+      reactive :message, writable: true
       actions :send_message
 
       def send_message(params)

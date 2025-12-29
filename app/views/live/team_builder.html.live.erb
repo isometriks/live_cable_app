@@ -1,0 +1,50 @@
+<div class="card shadow-xl max-w-64 m-4 bg-white m-x-auto">
+  <div class="card-body">
+    <div class="mt-2">
+      <% if contact.name.blank? %>
+        <h3 class="text-lg font-semibold">Pick A Teammate</h3>
+      <% else %>
+        <h3 class="text-lg font-semibold">You've chosen <%= contact.name %></h3>
+      <% end %>
+    </div>
+
+    <form live-form="change->form">
+      <%= contact.errors.full_messages.join(", ") %>
+
+      <div class="form-control w-full max-w-xs">
+        <label class="label">
+          <span class="label-text">Role</span>
+        </label>
+        <select name="contact[role]" class="select select-bordered">
+          <%= options_for_select({ "Select a Role" => "", "Engineer" => "engineer", "Designer" => "designer" }, selected: contact.role) %>
+        </select>
+      </div>
+
+      <div class="form-control w-full max-w-xs mt-4 <%= 'hidden' if names_for_role.empty? %>">
+        <label class="label">
+          <span class="label-text"><%= contact.role&.capitalize&.pluralize %></span>
+        </label>
+        <select name="contact[name]" class="select select-bordered">
+          <%= options_for_select(["Choose a Name"] + names_for_role, selected: contact.name) %>
+        </select>
+      </div>
+
+      <button class="btn btn-primary mt-4"
+              type="button"
+              live-action="save">
+        Add to Team
+      </button>
+    </form>
+
+    <h3 class="text-xl mt-4">Current Team</h3>
+
+    <ul>
+      <% (contacts[team] || []).each do |c| %>
+        <li><%= c.name %> (<%= c.role.capitalize %>)</li>
+      <% end %>
+      <% if (contacts[team] || []).empty? %>
+        <li>(No teammates yet)</li>
+      <% end %>
+    </ul>
+  </div>
+</div>

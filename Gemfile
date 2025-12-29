@@ -15,7 +15,7 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
-gem 'live_cable', path: '../live_cable'
+gem 'live_cable'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -46,11 +46,12 @@ end
 
 gem "nokogiri", "~> 1.18"
 
-gem "twig_ruby", "~> 0.0.7"
-
 # Authentication framework
 gem "devise", "~> 4.9"
 
 gem "method_source", "~> 1.1"
 
 gem "redis", "~> 5.4"
+
+
+gem "faker", "~> 3.5"

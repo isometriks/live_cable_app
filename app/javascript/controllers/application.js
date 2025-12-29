@@ -1,6 +1,6 @@
 import { Application, Controller } from "@hotwired/stimulus"
-import LiveCableBlessing from "live_cable_blessing"
-import LiveController from "live_cable_controller"
+import LiveCableBlessing from "@isometriks/live_cable/blessing"
+import LiveController from "@isometriks/live_cable/controller"
 
 Controller.blessings = [
   ...Controller.blessings,

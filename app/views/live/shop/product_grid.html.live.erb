@@ -1,0 +1,48 @@
+<div class="w-full">
+  <div class="space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <% component.paginated_products.each do |product| %>
+        <div class="card bg-base-100 shadow-xl" live-key="<%= product[:id] %>">
+          <div class="card-body items-center text-center">
+            <div class="text-6xl mb-4"><%= product[:image] %></div>
+            <h3 class="card-title text-lg"><%= product[:name] %></h3>
+            <p class="text-2xl font-bold text-primary">$<%= number_with_precision(product[:price], precision: 2) %></p>
+            <div class="card-actions justify-center w-full mt-4">
+              <button class="btn btn-primary btn-block"
+                      live-action="add_to_cart"
+                      live-value-product-id="<%= product[:id] %>">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="flex justify-center items-center gap-2">
+      <button class="btn btn-circle"
+              live-action="prev_page"
+              <%= 'disabled' if current_page == 1 %>>
+        «
+      </button>
+
+      <% (1..component.total_pages).each do |page| %>
+        <button class="btn btn-circle <%= 'btn-active' if current_page == page %>"
+                live-action="go_to_page"
+                live-value-page="<%= page %>">
+          <%= page %>
+        </button>
+      <% end %>
+
+      <button class="btn btn-circle"
+              live-action="next_page"
+              <%= 'disabled' if current_page == component.total_pages %>>
+        »
+      </button>
+    </div>
+
+    <div class="text-center text-sm text-base-content/70">
+      Page <%= current_page %> of <%= component.total_pages %>
+    </div>
+  </div>
+</div>

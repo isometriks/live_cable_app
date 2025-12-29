@@ -1,6 +1,7 @@
 module Live
   module Chat
     class ChatRoom < LiveCable::Component
+      after_connect :connected
       reactive :messages, -> { [] }, shared: true
 
       def connected

@@ -10,12 +10,18 @@ module ApplicationCable
 
     private
 
+    # Demo-only: generates a fake user for each connection so the examples
+    # work without requiring real authentication. In a real app you'd use
+    # Devise/Warden and reject_unauthorized_connection for unauthenticated users.
     def find_verified_user
       if (verified_user = env['warden'].user)
         verified_user
       else
-        # Reject the connection if no verified user is found
-        reject_unauthorized_connection
+        User.build(
+          id: SecureRandom.uuid,
+          first_name: Faker::Name.first_name,
+          last_name: Faker::Name.last_name,
+        )
       end
     end
   end

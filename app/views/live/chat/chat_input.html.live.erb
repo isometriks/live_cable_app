@@ -1,13 +1,14 @@
-{% yield live_component(component, class: "card bg-base-100 shadow-xl w-full") do %}
+<div class="card bg-base-100 shadow-xl w-full">
   <div class="card-body p-4">
-    <form data-live-action-param="send_message" data-action="submit->live#form:prevent">
+    <form live-form="send_message">
       <div class="flex gap-2">
         <input type="text"
                name="message"
-               value="{{ message }}"
+               value="<%= message %>"
                placeholder="Type your message..."
                class="input input-bordered flex-grow"
-               data-action="keydown->live#reactiveDebounce"
+               live-reactive="keydown"
+               live-debounce="300"
                autocomplete="off"
         />
 
@@ -20,4 +21,4 @@
       </div>
     </form>
   </div>
-{% endyield %}
+</div>
