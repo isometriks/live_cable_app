@@ -4,4 +4,5 @@ class ExamplesController < ApplicationController
   def chat; end
   def dialog; end
   def team_builder; end
+  def shop; end
 end

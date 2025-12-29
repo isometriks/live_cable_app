@@ -1,0 +1,84 @@
+{% yield live_component(component, class: "card bg-base-100 shadow-xl sticky top-4") do %}
+  <div class="card-body">
+    <h2 class="card-title text-2xl mb-4">
+      Shopping Cart
+      {% if component.item_count > 0 %}
+        <span class="badge badge-primary badge-lg">{{ component.item_count }}</span>
+      {% endif %}
+    </h2>
+
+    {% if component.item_count == 0 %}
+      <div class="text-center py-8 text-base-content/50">
+        <div class="text-4xl mb-2">🛒</div>
+        <p>Your cart is empty</p>
+      </div>
+    {% else %}
+      <div class="space-y-3 mb-4">
+        {% for item in component.cart_items_array %}
+          <div class="flex items-center gap-3 p-3 bg-base-200 rounded-lg" live-key="{{ item.product_id }}">
+            <div class="flex-1">
+              <h4 class="font-semibold">{{ item.name }}</h4>
+              <p class="text-sm text-base-content/70">${{ item.price|number_format(2) }} each</p>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button class="btn btn-sm btn-circle"
+                      data-action="live#call"
+                      data-live-action-param="decrease_quantity"
+                      data-live-product-id-param="{{ item.product_id }}">
+                -
+              </button>
+              <span class="font-bold w-8 text-center">{{ item.quantity }}</span>
+              <button class="btn btn-sm btn-circle"
+                      data-action="live#call"
+                      data-live-action-param="increase_quantity"
+                      data-live-product-id-param="{{ item.product_id }}">
+                +
+              </button>
+            </div>
+
+            <div class="text-right min-w-[80px]">
+              <div class="font-bold">${{ (item.price * item.quantity)|number_format(2) }}</div>
+            </div>
+
+            <button class="btn btn-sm btn-ghost btn-circle"
+                    data-action="live#call"
+                    data-live-action-param="remove_item"
+                    data-live-product-id-param="{{ item.product_id }}">
+              ✕
+            </button>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="space-y-2">
+        <div class="flex justify-between text-base-content/70">
+          <span>Subtotal:</span>
+          <span>${{ component.subtotal|number_format(2) }}</span>
+        </div>
+        <div class="flex justify-between text-base-content/70">
+          <span>Tax (8%):</span>
+          <span>${{ component.tax|number_format(2) }}</span>
+        </div>
+        <div class="divider my-2"></div>
+        <div class="flex justify-between text-xl font-bold">
+          <span>Total:</span>
+          <span class="text-primary">${{ component.total|number_format(2) }}</span>
+        </div>
+      </div>
+
+      <div class="card-actions flex-col w-full mt-4 gap-2">
+        <button class="btn btn-primary btn-block">
+          Checkout
+        </button>
+        <button class="btn btn-ghost btn-sm btn-block"
+                data-action="live#call"
+                data-live-action-param="clear_cart">
+          Clear Cart
+        </button>
+      </div>
+    {% endif %}
+  </div>
+{% endyield %}

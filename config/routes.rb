@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   get "chat" => "examples#chat"
   get "dialog" => "examples#dialog"
   get "team_builder" => "examples#team_builder"
+  get "shop" => "examples#shop"
   root "examples#index"
 end

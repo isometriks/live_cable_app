@@ -1,0 +1,52 @@
+{% yield live_component(component, class: "w-full") do %}
+  <div class="space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {% for product in component.paginated_products %}
+        <div class="card bg-base-100 shadow-xl" live-key="{{ product.id }}">
+          <div class="card-body items-center text-center">
+            <div class="text-6xl mb-4">{{ product.image }}</div>
+            <h3 class="card-title text-lg">{{ product.name }}</h3>
+            <p class="text-2xl font-bold text-primary">${{ product.price|number_format(2) }}</p>
+            <div class="card-actions justify-center w-full mt-4">
+              <button class="btn btn-primary btn-block"
+                      data-action="live#call"
+                      data-live-action-param="add_to_cart"
+                      data-live-product-id-param="{{ product.id }}">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="flex justify-center items-center gap-2">
+      <button class="btn btn-circle"
+              data-action="live#call"
+              data-live-action-param="prev_page"
+              {% if current_page == 1 %}disabled{% endif %}>
+        «
+      </button>
+
+      {% for page in 1..component.total_pages %}
+        <button class="btn btn-circle {% if current_page == page %}btn-active{% endif %}"
+                data-action="live#call"
+                data-live-action-param="go_to_page"
+                data-live-page-param="{{ page }}">
+          {{ page }}
+        </button>
+      {% endfor %}
+
+      <button class="btn btn-circle"
+              data-action="live#call"
+              data-live-action-param="next_page"
+              {% if current_page == component.total_pages %}disabled{% endif %}>
+        »
+      </button>
+    </div>
+
+    <div class="text-center text-sm text-base-content/70">
+      Page {{ current_page }} of {{ component.total_pages }}
+    </div>
+  </div>
+{% endyield %}
