@@ -14,8 +14,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  get "todo" => "test#todo"
-  get "chat" => "test#chat"
-  get "dialog" => "test#dialog"
-  root "test#index"
+  get "todo" => "examples#todo"
+  get "chat" => "examples#chat"
+  get "dialog" => "examples#dialog"
+  get "team_builder" => "examples#team_builder"
+  root "examples#index"
 end
