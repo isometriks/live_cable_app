@@ -38,7 +38,7 @@
     <ul class="menu bg-base-200 w-full rounded-box">
       <% component.filtered_todos.each do |todo| %>
         <li class="mb-1" live-key="<%= todo[:id] %>">
-          <%= live("todo_item", id: todo[:id], todo:) %>
+          <%= live("todo/item", id: todo[:id], todo:) %>
         </li>
       <% end %>
     </ul>
