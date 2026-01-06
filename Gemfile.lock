@@ -108,6 +108,12 @@ GEM
       raabro (~> 1.4)
     globalid (1.3.0)
       activesupport (>= 6.1)
+    herb (0.8.7-aarch64-linux-gnu)
+    herb (0.8.7-aarch64-linux-musl)
+    herb (0.8.7-arm-linux-gnu)
+    herb (0.8.7-arm-linux-musl)
+    herb (0.8.7-x86_64-linux-gnu)
+    herb (0.8.7-x86_64-linux-musl)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.2.2)
@@ -292,6 +298,7 @@ DEPENDENCIES
   bootsnap
   debug
   devise (~> 4.9)
+  herb (~> 0.8.7)
   importmap-rails
   live_cable!
   method_source (~> 1.1)

@@ -3,6 +3,7 @@ module Live
     class ProductGrid < LiveCable::Component
       shared :cart_items, -> { {} }
       reactive :current_page, -> { 1 }
+      reactive :dialog, -> { Dialog::Dialog.new("cart-dialog", confirmation: { title: "Hey?", confirm: -> { puts "Works" }, cancel: -> { puts "Nope"} }) }
 
       actions :add_to_cart, :next_page, :prev_page, :go_to_page
 

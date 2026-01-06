@@ -54,3 +54,5 @@ gem "devise", "~> 4.9"
 gem "method_source", "~> 1.1"
 
 gem "redis", "~> 5.4"
+
+gem "herb", "~> 0.8.7"

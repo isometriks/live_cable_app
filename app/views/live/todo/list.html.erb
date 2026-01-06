@@ -1,4 +1,4 @@
-<%= live_component(component, class: "card bg-base-100 shadow-xl max-w-md mx-auto w-2xl") do %>
+<%= live_component(class: "card bg-base-100 shadow-xl max-w-md mx-auto w-2xl") do %>
   <div class="card-body">
     <div class="flex justify-between items-center">
       <h2 class="card-title">Todo List</h2>
@@ -17,19 +17,19 @@
       </div>
 
       <div class="tabs tabs-boxed w-full mt-4">
-        <a class="tab <%= filter == :all ? 'tab-active' : '' %>" 
-           data-action="click->live#call" 
-           data-live-action-param="filter_all">
+        <a class="tab <%= filter == :all ? 'tab-active' : '' %>"
+
+        >
           All
         </a>
-        <a class="tab <%= filter == :active ? 'tab-active' : '' %>" 
-           data-action="click->live#call" 
-           data-live-action-param="filter_active">
+        <a class="tab <%= filter == :active ? 'tab-active' : '' %>"
+
+        >
           Active
         </a>
-        <a class="tab <%= filter == :completed ? 'tab-active' : '' %>" 
-           data-action="click->live#call" 
-           data-live-action-param="filter_completed">
+        <a class="tab <%= filter == :completed ? 'tab-active' : '' %>"
+
+        >
           Completed
         </a>
       </div>

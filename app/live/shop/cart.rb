@@ -1,7 +1,7 @@
 module Live
   module Shop
     class Cart < LiveCable::Component
-      shared :cart_items, -> { {} }
+      reactive :cart_items, -> { {} }, shared: true
 
       actions :increase_quantity, :decrease_quantity, :remove_item, :clear_cart
 
