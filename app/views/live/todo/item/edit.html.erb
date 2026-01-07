@@ -1,16 +1,15 @@
-<%= live_component(data: { controller: "todo-item" }, class: "flex justify-between items-center p-2") do %>
+<div class="flex justify-between items-center p-2">
   <label class="label cursor-pointer gap-2 flex-grow justify-start">
     <input type="checkbox"
            class="checkbox checkbox-primary"
-           <%= todo.completed ? 'checked' : '' %>
-           data-action="change->live#call"
-           data-live-action-param="toggle" />
+           <%= todo[:completed] ? 'checked' : '' %>
+           live-change="toggle" />
     <input
         type="text"
         name="text"
-        value="<%= todo.text %>"
+        value="<%= todo[:text] %>"
         data-todo-item-target="text"
-        data-action="keydown.enter->todo-item#save"
+        live-keydown.enter="save"
         class="input">
   </label>
   <button class="btn btn-square btn-xs btn-primary"
@@ -18,9 +17,9 @@
     Done
   </button>
 
-  <button class="btn btn-square btn-xs btn-error"
-          data-action="click->live#call"
-          data-live-action-param="remove">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+  <button class="btn btn-square btn-xs btn-error" live-click="remove">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
   </button>
-<% end %>
+</div>
