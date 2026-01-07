@@ -1,4 +1,4 @@
-<%= live_component(data: { controller: "todo-item" }, class: "flex justify-between items-center p-2") do %>
+<div data-fix-controller="todo-item" class="flex justify-between items-center p-2">
   <div class="label cursor-pointer gap-2 flex-grow justify-start">
     <input type="checkbox"
            class="checkbox checkbox-primary"
@@ -30,4 +30,4 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
     </svg>
   </button>
-<% end %>
+</div>

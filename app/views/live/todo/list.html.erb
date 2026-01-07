@@ -1,4 +1,4 @@
-<%= live_component(class: "card bg-base-100 shadow-xl max-w-md mx-auto w-2xl") do %>
+<div class="card bg-base-100 shadow-xl max-w-md mx-auto w-2xl">
   <div class="card-body">
     <div class="flex justify-between items-center">
       <h2 class="card-title">Todo List</h2>
@@ -18,17 +18,15 @@
 
       <div class="tabs tabs-boxed w-full mt-4">
         <a class="tab <%= filter == :all ? 'tab-active' : '' %>"
-
+          <%= live_action(:filter_all) %>
         >
           All
         </a>
-        <a class="tab <%= filter == :active ? 'tab-active' : '' %>"
-
-        >
+        <a class="tab <%= filter == :active ? 'tab-active' : '' %>" live-click="filter_active">
           Active
         </a>
         <a class="tab <%= filter == :completed ? 'tab-active' : '' %>"
-
+           <%= live_action(:filter_completed) %>
         >
           Completed
         </a>
@@ -46,4 +44,4 @@
       Randomize
     </button>
   </div>
-<% end %>
+</div>
