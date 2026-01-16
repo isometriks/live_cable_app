@@ -3,8 +3,8 @@
     <input type="checkbox"
            class="checkbox checkbox-primary"
            <%= todo[:completed] ? 'checked' : '' %>
-           live-change="toggle" />
-    <div class="w-full <%= todo[:completed] ? 'line-through text-gray-500' : '' %>" live-click="edit">
+           live-action="change->toggle" />
+    <div class="w-full <%= todo[:completed] ? 'line-through text-gray-500' : '' %>" live-action="click->edit">
       <%= todo[:text] %>
     </div>
   </div>
@@ -14,7 +14,7 @@
                       when :medium then 'badge-warning'
                       else 'badge-info'
                       end %>
-  <span class="badge <%= priority_class %> mr-2 cursor-pointer" live-click="change_priority">
+  <span class="badge <%= priority_class %> mr-2 cursor-pointer" live-action="click->change_priority">
     <%= todo[:priority].to_s.capitalize %>
   </span>
 

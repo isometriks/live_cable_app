@@ -1,4 +1,4 @@
-{% yield live_component(component, data: { controller: "chat" }, class: "card bg-base-100 shadow-xl max-w-2xl mx-auto") do %}
+<div class="card bg-base-100 shadow-xl max-w-2xl mx-auto" data-controller="chat">
   <div class="card-body">
     <h2 class="card-title mb-4">Chat Room</h2>
 
@@ -26,4 +26,4 @@
 
     {{ live("chat/chat_input", id: "chat_input") }}
   </div>
-{% endyield %}
+</div>

@@ -1,4 +1,4 @@
-{% yield live_component(component, class: "card shadow-xl max-w-64 m-4 bg-white m-x-auto") do %}
+<div class="card shadow-xl max-w-64 m-4 bg-white m-x-auto">
   <div class="card-body">
     <div class="mt-2">
       {% if not contact.name %}
@@ -8,7 +8,7 @@
       {% endif %}
     </div>
 
-    <form data-action="change->live#form" data-live-action-param="form">
+    <form live-form="change->form">
       {{ contact.errors.full_messages|join(", ") }}
 
       <div class="form-control w-full max-w-xs">
@@ -44,8 +44,7 @@
 
       <button class="btn btn-primary mt-4"
               type="button"
-              data-action="click->live#call"
-              data-live-action-param="save">
+              live-action="save">
         Add to Team
       </button>
     </form>
@@ -63,4 +62,4 @@
       {% endfor %}
     </ul>
   </div>
-{% endyield %}
+</div>

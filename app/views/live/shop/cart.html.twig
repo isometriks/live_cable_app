@@ -1,4 +1,4 @@
-{% yield live_component(class: "card bg-base-100 shadow-xl sticky top-4") do %}
+<div class="card bg-base-100 shadow-xl sticky top-4">
   <div class="card-body">
     <h2 class="card-title text-2xl mb-4">
       Shopping Cart
@@ -23,16 +23,14 @@
 
             <div class="flex items-center gap-2">
               <button class="btn btn-sm btn-circle"
-                      data-action="live#call"
-                      data-live-action-param="decrease_quantity"
-                      data-live-product-id-param="{{ item.product_id }}">
+                      live-action="decrease_quantity"
+                      live-value-product-id="{{ item.product_id }}">
                 -
               </button>
-              <span class="font-bold w-8 text-center">{{ item.quantity }}</span>
+              <span class="font-bold w-8 text-center">{{ item. quantity }}</span>
               <button class="btn btn-sm btn-circle"
-                      data-action="live#call"
-                      data-live-action-param="increase_quantity"
-                      data-live-product-id-param="{{ item.product_id }}">
+                      live-action="increase_quantity"
+                      live-value-product-id="{{ item.product_id }}">
                 +
               </button>
             </div>
@@ -42,9 +40,8 @@
             </div>
 
             <button class="btn btn-sm btn-ghost btn-circle"
-                    data-action="live#call"
-                    data-live-action-param="remove_item"
-                    data-live-product-id-param="{{ item.product_id }}">
+                    live-action="remove_item"
+                    live-value-product-id="{{ item.product_id }}">
               ✕
             </button>
           </div>
@@ -74,11 +71,10 @@
           Checkout
         </button>
         <button class="btn btn-ghost btn-sm btn-block"
-                data-action="live#call"
-                data-live-action-param="clear_cart">
+                live-action="clear_cart">
           Clear Cart
         </button>
       </div>
     {% endif %}
   </div>
-{% endyield %}
+</div>
