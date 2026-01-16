@@ -17,13 +17,13 @@
       </div>
 
       <div class="tabs tabs-boxed w-full mt-4">
-        <a class="tab <%= filter == :all ? 'tab-active' : '' %>" live-click="filter_all">
+        <a class="tab <%= filter == :all ? 'tab-active' : '' %>" live-action="filter_all">
           All
         </a>
-        <a class="tab <%= filter == :active ? 'tab-active' : '' %>" live-click="filter_active">
+        <a class="tab <%= filter == :active ? 'tab-active' : '' %>" live-action="filter_active">
           Active
         </a>
-        <a class="tab <%= filter == :completed ? 'tab-active' : '' %>" live-click="filter_completed">
+        <a class="tab <%= filter == :completed ? 'tab-active' : '' %>" live-action="filter_completed">
           Completed
         </a>
       </div>
@@ -36,7 +36,7 @@
         </li>
       <% end %>
     </ul>
-    <button class="btn" live-click="randomize">
+    <button class="btn" live-action="randomize">
       Randomize
     </button>
   </div>

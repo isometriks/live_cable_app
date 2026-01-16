@@ -55,7 +55,6 @@
           <root url="file://$MODULE_DIR$/../live_cable/.idea" />
           <root url="file://$MODULE_DIR$/../live_cable/config" />
           <root url="file://$MODULE_DIR$/../live_cable/.github" />
-          <root url="file://$MODULE_DIR$/../live_cable/node_modules" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
@@ -66,7 +65,6 @@
           <root url="file://$MODULE_DIR$/../live_cable/.idea" />
           <root url="file://$MODULE_DIR$/../live_cable/config" />
           <root url="file://$MODULE_DIR$/../live_cable/.github" />
-          <root url="file://$MODULE_DIR$/../live_cable/node_modules" />
         </SOURCES>
         <excluded>
           <root url="file://$MODULE_DIR$/../live_cable/.git" />
@@ -144,7 +142,6 @@
     <orderEntry type="library" scope="PROVIDED" name="rake (v13.3.1, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v6.17.0, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="redis (v5.4.1, Remote: ruby-3.4.6-p54) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="redis-client (v0.26.2, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="reline (v0.6.3, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="responders (v3.2.0, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sanitize (v7.0.0, Remote: ruby-3.4.6-p54) [gem]" level="application" />
