@@ -56,3 +56,5 @@ gem "method_source", "~> 1.1"
 gem "redis", "~> 5.4"
 
 gem "herb", "~> 0.8.7"
+
+gem "faker", "~> 3.5"

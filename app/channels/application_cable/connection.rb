@@ -15,7 +15,14 @@ module ApplicationCable
         verified_user
       else
         # Reject the connection if no verified user is found
-        reject_unauthorized_connection
+        # reject_unauthorized_connection
+
+        # Make a fake user
+        User.build(
+          id: SecureRandom.uuid,
+          first_name: Faker::Name.first_name,
+          last_name: Faker::Name.last_name,
+        )
       end
     end
   end
