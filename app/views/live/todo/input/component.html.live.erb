@@ -1,0 +1,30 @@
+<div class="card bg-base-100 shadow-xl max-w-md mx-auto mb-4 w-2xl">
+  <div class="card-body">
+    <form live-form="add">
+      <h2 class="card-title">New Todo</h2>
+
+      <div class="flex gap-2">
+        <input type="text"
+               name="text"
+               value="<%= text %>"
+               placeholder="Enter todo..."
+               class="input input-bordered flex-grow"
+               live-debounce="300"
+               live-reactive="change"
+          />
+
+        <button class="btn btn-primary">
+          Add
+        </button>
+      </div>
+    </form>
+
+    <div id="hello">
+      <%= live("todo/hello", id: "hello") %>
+    </div>
+
+    <button class="btn primary" live-click="<%= LiveCable::JS.toggle(to: "#hello") %>">
+      Toggle
+    </button>
+  </div>
+</div>

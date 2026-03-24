@@ -27,7 +27,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
-      <library name="live_cable (v0.0.1) [path][gem]" type="rubylib">
+      <library name="live_cable (v0.1.0) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
             <AdditionalInfo>
@@ -37,6 +37,82 @@
               <option name="summary" value="Live Components over ActionCable" />
             </AdditionalInfo>
           </option>
+          <option name="dependencies">
+            <list>
+              <Dependency>
+                <option name="bounds">
+                  <list>
+                    <Bound>
+                      <option name="operator" value="&gt;=" />
+                      <option name="version" value="7.0" />
+                    </Bound>
+                  </list>
+                </option>
+                <option name="doRequire" value="true" />
+                <option name="name" value="actioncable" />
+              </Dependency>
+              <Dependency>
+                <option name="bounds">
+                  <list>
+                    <Bound>
+                      <option name="operator" value="&gt;=" />
+                      <option name="version" value="7.0" />
+                    </Bound>
+                  </list>
+                </option>
+                <option name="doRequire" value="true" />
+                <option name="name" value="actionview" />
+              </Dependency>
+              <Dependency>
+                <option name="bounds">
+                  <list>
+                    <Bound>
+                      <option name="operator" value="&gt;=" />
+                      <option name="version" value="7.0" />
+                    </Bound>
+                  </list>
+                </option>
+                <option name="doRequire" value="true" />
+                <option name="name" value="activemodel" />
+              </Dependency>
+              <Dependency>
+                <option name="bounds">
+                  <list>
+                    <Bound>
+                      <option name="operator" value="&gt;=" />
+                      <option name="version" value="7.0" />
+                    </Bound>
+                  </list>
+                </option>
+                <option name="doRequire" value="true" />
+                <option name="name" value="activesupport" />
+              </Dependency>
+              <Dependency>
+                <option name="bounds">
+                  <list>
+                    <Bound>
+                      <option name="operator" value="~&gt;" />
+                      <option name="version" value="0.8" />
+                    </Bound>
+                  </list>
+                </option>
+                <option name="doRequire" value="true" />
+                <option name="name" value="herb" />
+              </Dependency>
+              <Dependency>
+                <option name="bounds">
+                  <list>
+                    <Bound>
+                      <option name="operator" value="~&gt;" />
+                      <option name="version" value="2.6" />
+                    </Bound>
+                  </list>
+                </option>
+                <option name="doRequire" value="true" />
+                <option name="name" value="zeitwerk" />
+              </Dependency>
+            </list>
+          </option>
           <option name="fromPath" value="true" />
           <option name="name" value="live_cable" />
           <option name="requirePaths">
@@ -45,17 +121,19 @@
             </list>
           </option>
           <option name="url" value="file://$MODULE_DIR$/../live_cable" />
-          <option name="version" value="0.0.1" />
+          <option name="version" value="0.1.0" />
         </properties>
         <CLASSES>
           <root url="file://$MODULE_DIR$/../live_cable/app" />
           <root url="file://$MODULE_DIR$/../live_cable/lib" />
-          <root url="file://$MODULE_DIR$/../live_cable/log" />
           <root url="file://$MODULE_DIR$/../live_cable/tmp" />
           <root url="file://$MODULE_DIR$/../live_cable/.git" />
+          <root url="file://$MODULE_DIR$/../live_cable/docs" />
           <root url="file://$MODULE_DIR$/../live_cable/spec" />
+          <root url="file://$MODULE_DIR$/../live_cable/test" />
           <root url="file://$MODULE_DIR$/../live_cable/.idea" />
           <root url="file://$MODULE_DIR$/../live_cable/config" />
+          <root url="file://$MODULE_DIR$/../live_cable/.claude" />
           <root url="file://$MODULE_DIR$/../live_cable/.github" />
           <root url="file://$MODULE_DIR$/../live_cable/node_modules" />
         </CLASSES>
@@ -63,21 +141,25 @@
         <SOURCES>
           <root url="file://$MODULE_DIR$/../live_cable/app" />
           <root url="file://$MODULE_DIR$/../live_cable/lib" />
-          <root url="file://$MODULE_DIR$/../live_cable/log" />
           <root url="file://$MODULE_DIR$/../live_cable/tmp" />
           <root url="file://$MODULE_DIR$/../live_cable/.git" />
+          <root url="file://$MODULE_DIR$/../live_cable/docs" />
           <root url="file://$MODULE_DIR$/../live_cable/spec" />
+          <root url="file://$MODULE_DIR$/../live_cable/test" />
           <root url="file://$MODULE_DIR$/../live_cable/.idea" />
           <root url="file://$MODULE_DIR$/../live_cable/config" />
+          <root url="file://$MODULE_DIR$/../live_cable/.claude" />
           <root url="file://$MODULE_DIR$/../live_cable/.github" />
           <root url="file://$MODULE_DIR$/../live_cable/node_modules" />
         </SOURCES>
         <excluded>
-          <root url="file://$MODULE_DIR$/../live_cable/log" />
           <root url="file://$MODULE_DIR$/../live_cable/tmp" />
           <root url="file://$MODULE_DIR$/../live_cable/.git" />
+          <root url="file://$MODULE_DIR$/../live_cable/docs" />
           <root url="file://$MODULE_DIR$/../live_cable/spec" />
+          <root url="file://$MODULE_DIR$/../live_cable/test" />
           <root url="file://$MODULE_DIR$/../live_cable/.idea" />
+          <root url="file://$MODULE_DIR$/../live_cable/.claude" />
           <root url="file://$MODULE_DIR$/../live_cable/.github" />
         </excluded>
       </library>
@@ -111,6 +193,7 @@
     <orderEntry type="library" scope="PROVIDED" name="erb (v6.0.1, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.13.1, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="et-orbi (v1.4.0, Remote: ruby-3.4.6-p54) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="faker (v3.5.3, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="fugit (v1.12.1, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v1.3.0, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v1.14.7, Remote: ruby-3.4.6-p54) [gem]" level="application" />
@@ -150,6 +233,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rake (v13.3.1, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v6.17.0, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="redis (v5.4.1, Remote: ruby-3.4.6-p54) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="redis-client (v0.26.2, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="reline (v0.6.3, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="responders (v3.2.0, Remote: ruby-3.4.6-p54) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sanitize (v7.0.0, Remote: ruby-3.4.6-p54) [gem]" level="application" />
