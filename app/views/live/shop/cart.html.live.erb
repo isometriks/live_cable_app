@@ -2,6 +2,8 @@
   <div class="card-body">
     <h2 class="card-title text-2xl mb-4">
       Shopping Cart
+      <%# Shown whenever the component root carries live-loading %>
+      <span class="live-spinner loading loading-spinner loading-sm text-primary"></span>
       <% if component.item_count > 0 %>
         <span class="badge badge-primary badge-lg"><%= component.item_count %></span>
       <% end %>
@@ -67,11 +69,16 @@
       </div>
 
       <div class="card-actions flex-col w-full mt-4 gap-2">
-        <button class="btn btn-primary btn-block">
+        <%# live-disable-with prevents a double charge and swaps the label
+            while the checkout round trip is in flight %>
+        <button class="btn btn-primary btn-block"
+                live-action="checkout"
+                live-disable-with="Processing payment…">
           Checkout
         </button>
         <button class="btn btn-ghost btn-sm btn-block"
-                live-action="clear_cart">
+                live-action="clear_cart"
+                live-disable-with>
           Clear Cart
         </button>
       </div>

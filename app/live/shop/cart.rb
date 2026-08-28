@@ -3,7 +3,11 @@ module Live
     class Cart < LiveCable::Component
       reactive :cart_items, -> { {} }, shared: true
 
-      actions :increase_quantity, :decrease_quantity, :remove_item, :clear_cart
+      actions :increase_quantity, :decrease_quantity, :remove_item, :clear_cart, :checkout
+
+      # Pretend to talk to a payment processor, so the loading state is
+      # actually visible on localhost
+      PROCESSING_TIME = 1.5
 
       def increase_quantity(params)
         product_id = params[:product_id].to_i
@@ -29,6 +33,22 @@ module Live
 
       def clear_cart
         cart_items.clear
+      end
+
+      def checkout
+        return if cart_items.empty?
+
+        charged = total
+        sleep PROCESSING_TIME
+
+        cart_items.clear
+
+        dispatch_event(
+          'toast:show',
+          message: format('Order placed — $%.2f charged', charged),
+          level: 'success',
+          window: true
+        )
       end
 
       def cart_items_array

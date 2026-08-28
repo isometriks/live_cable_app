@@ -1,4 +1,9 @@
-<div class="card bg-base-100 shadow-xl max-w-2xl mx-auto" data-controller="chat">
+<%# Server-dispatched events are plain DOM events, so plain Stimulus
+    data-action syntax handles them - no LiveCable-specific JavaScript. %>
+<div class="card bg-base-100 shadow-xl max-w-2xl mx-auto"
+     data-controller="chat"
+     data-action="chat:message-received->chat#scrollToBottom
+                  chat:sent->chat#focusInput">
   <div class="card-body">
     <h2 class="card-title mb-4">Chat Room</h2>
 
@@ -7,7 +12,7 @@
         <p class="text-base-content opacity-50">No messages yet. Start the conversation!</p>
       </div>
       <% messages.each do |msg| %>
-        <div class="chat <%= current_user.id == msg["user"]["id"] ? "chat-start" : "chat-end" %> mb-2" data-chat-target="message">
+        <div class="chat <%= current_user.id == msg["user"]["id"] ? "chat-start" : "chat-end" %> mb-2">
           <div class="chat-bubble <%= current_user.id == msg["user"]["id"] ? "bg-primary" : "bg-secondary" %> text-primary-content">
             <div class="font-semibold text-sm"><%= msg["user"]["first_name"] %></div>
             <div class="mt-1"><%= msg["text"] %></div>

@@ -19,5 +19,6 @@ Rails.application.routes.draw do
   get "dialog" => "examples#dialog"
   get "team_builder" => "examples#team_builder"
   get "shop" => "examples#shop"
+  get "loading" => "examples#loading"
   root "examples#index"
 end

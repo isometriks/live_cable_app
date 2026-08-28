@@ -1,0 +1,47 @@
+/*
+ * LiveCable adds `live-loading` to a component's root element and to the
+ * element that triggered a message while that message is in flight, so
+ * pending states are pure CSS - no JavaScript required.
+ */
+
+/* The element that triggered the round trip */
+button[live-loading],
+[live-loading] button[live-disable-with] {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* Reactive inputs get the attribute but are never disabled, so typing
+   is never interrupted. */
+input[live-loading] {
+  border-color: var(--color-primary, currentColor);
+}
+
+/* Anything inside a component that is waiting on the server */
+.live-spinner {
+  display: none;
+}
+
+[live-loading] .live-spinner {
+  display: inline-block;
+}
+
+/* A whole region that dims while its component is busy */
+[live-loading] .live-dim {
+  opacity: 0.5;
+  transition: opacity 150ms ease-in-out;
+}
+
+/* Flash applied by demo_controller when a server event fires */
+@keyframes live-flash {
+  from {
+    background-color: var(--color-warning, gold);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+.live-flash {
+  animation: live-flash 1s ease-out;
+}

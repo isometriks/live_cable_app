@@ -19,6 +19,10 @@ module Live
 
         # Clear the input
         self.message = ""
+
+        # Bubbles up from this component's root to the chat controller on the
+        # room, which puts the cursor back in the (now empty) input
+        dispatch_event("chat:sent")
       end
     end
   end

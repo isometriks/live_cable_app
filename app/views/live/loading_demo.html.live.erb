@@ -1,0 +1,182 @@
+<%# Server events are ordinary bubbling DOM events, so a plain Stimulus
+    controller with data-action handles them. %>
+<div class="space-y-6"
+     data-controller="demo"
+     data-action="demo:note-added->demo#noteAdded
+                  demo:pinged->demo#log">
+
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">
+        Simulated latency
+        <span class="live-spinner loading loading-spinner loading-sm text-primary"></span>
+      </h2>
+      <p class="text-base-content/70 text-sm">
+        Every action on this page sleeps for this long before responding, so the
+        in-flight state is visible. The slider itself is a reactive input — it
+        writes straight to the component with no action, and no latency.
+      </p>
+
+      <div class="flex items-center gap-4 mt-2">
+        <input type="range"
+               name="latency"
+               min="0"
+               max="<%= Live::LoadingDemo::MAX_LATENCY %>"
+               step="250"
+               value="<%= latency %>"
+               class="range range-primary flex-grow"
+               live-reactive
+               live-debounce="150" />
+        <span class="badge badge-lg font-mono"><%= component.latency_ms %>ms</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <%# ---------------------------------------------------------------- %>
+    <%# Loading states                                                    %>
+    <%# ---------------------------------------------------------------- %>
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h2 class="card-title">
+          Loading states
+          <span class="live-spinner loading loading-spinner loading-sm text-primary"></span>
+        </h2>
+
+        <div class="space-y-4 mt-2">
+          <div>
+            <button class="btn btn-primary"
+                    live-action="save"
+                    live-disable-with="Saving…">
+              Save settings
+            </button>
+            <p class="text-xs text-base-content/60 mt-2">
+              <code>live-disable-with="Saving…"</code> — disabled and relabelled
+              while in flight. Last saved: <strong><%= component.saved_label %></strong>
+            </p>
+          </div>
+
+          <div>
+            <button class="btn btn-outline" live-action="noop" live-disable-with>
+              Do nothing
+            </button>
+            <p class="text-xs text-base-content/60 mt-2">
+              Bare <code>live-disable-with</code> — disabled, label untouched.
+              This action changes no state, so there's no re-render; the server
+              sends an <code>_ack</code> instead and the button still recovers.
+            </p>
+          </div>
+
+          <div class="divider my-0"></div>
+
+          <div>
+            <label class="label">
+              <span class="label-text">Reactive search</span>
+            </label>
+            <input type="text"
+                   name="query"
+                   value="<%= query %>"
+                   placeholder="Try “state”…"
+                   class="input input-bordered w-full"
+                   autocomplete="off"
+                   live-reactive
+                   live-debounce="300" />
+            <p class="text-xs text-base-content/60 mt-2">
+              Reactive inputs get <code>live-loading</code> but are never
+              disabled, so typing is never interrupted.
+            </p>
+
+            <% results = component.results %>
+            <ul class="live-dim menu bg-base-200 rounded-box mt-3">
+              <% results.each do |item| %>
+                <li live-key="<%= item %>"><a><%= item %></a></li>
+              <% end %>
+              <% if results.empty? %>
+                <li class="p-3 text-base-content/50">No matches</li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%# ---------------------------------------------------------------- %>
+    <%# Server events                                                     %>
+    <%# ---------------------------------------------------------------- %>
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h2 class="card-title">Server events</h2>
+
+        <div class="space-y-4 mt-2">
+          <div>
+            <button class="btn btn-secondary" live-action="ping" live-disable-with="Pinging…">
+              Ping
+            </button>
+            <p class="text-xs text-base-content/60 mt-2">
+              <code>dispatch_event('demo:pinged', …)</code> with no state
+              change — the event is delivered on its own, without a re-render.
+            </p>
+          </div>
+
+          <div>
+            <p class="text-xs text-base-content/60">
+              “Save settings” also dispatches
+              <code>toast:show</code> with <code>window: true</code>, handled by
+              the toast container in the layout — outside any component.
+            </p>
+          </div>
+
+          <div class="divider my-0"></div>
+
+          <form live-form="add_note" data-demo-target="form">
+            <label class="label">
+              <span class="label-text">Add a note</span>
+            </label>
+            <div class="flex gap-2">
+              <input type="text"
+                     name="note"
+                     placeholder="Something worth remembering"
+                     class="input input-bordered flex-grow"
+                     autocomplete="off" />
+              <button type="submit" class="btn btn-primary" live-disable-with="Adding…">
+                Add
+              </button>
+            </div>
+            <p class="text-xs text-base-content/60 mt-2">
+              The input isn't reactive — it's cleared by the
+              <code>demo:note-added</code> handler, which also flashes the new
+              note. Events fire <em>after</em> the morph, so the note is already
+              on the page when the handler runs.
+            </p>
+          </form>
+
+          <ul class="space-y-2">
+            <% notes.each do |note| %>
+              <li id="note-<%= note[:id] %>"
+                  live-key="<%= note[:id] %>"
+                  class="flex justify-between gap-2 p-2 rounded bg-base-200">
+                <span><%= note[:text] %></span>
+                <span class="text-xs text-base-content/50 font-mono"><%= note[:at] %></span>
+              </li>
+            <% end %>
+          </ul>
+
+          <% if notes.any? %>
+            <button class="btn btn-ghost btn-sm" live-action="clear_notes" live-disable-with="Clearing…">
+              Clear notes
+            </button>
+          <% end %>
+
+          <div class="divider my-0"></div>
+
+          <h3 class="font-semibold text-sm">Event log</h3>
+          <ul class="text-xs font-mono space-y-1 max-h-40 overflow-y-auto"
+              data-demo-target="log"
+              live-ignore>
+            <li class="text-base-content/40" data-placeholder>Waiting for server events…</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

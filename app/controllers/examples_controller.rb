@@ -5,4 +5,5 @@ class ExamplesController < ApplicationController
   def dialog; end
   def team_builder; end
   def shop; end
+  def loading; end
 end

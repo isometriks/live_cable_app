@@ -26,7 +26,14 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-neutral-200 h-full m-0 p-4">
+  <%# min-h-full, not h-full: h-full pins the body box to the viewport height,
+      so the background stops at the fold on any page taller than the window %>
+  <body class="bg-neutral-200 min-h-full m-0 p-4">
     <%= yield %>
+
+    <%# Toasts pushed from components with dispatch_event('toast:show', ..., window: true) %>
+    <div class="toast toast-top toast-end z-50 pointer-events-none"
+         data-controller="toast"
+         data-action="toast:show@window->toast#show"></div>
   </body>
 </html>
